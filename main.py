@@ -10,7 +10,7 @@ client = genai.Client(api_key=api_key)
 
 
 def main():
-    if (len(sys.argv) < 2):
+    if len(sys.argv) <= 1:
         print("No prompt provided")
         print("Usage: python3 main.py <prompt>")
         sys.exit(1)
