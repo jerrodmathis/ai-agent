@@ -12,9 +12,9 @@ def get_files_info(working_directory, directory="."):
         if not os.path.isdir(abs_path):
             raise Exception(f'"{directory}" is not a directory')
     except OSError as oserr:
-        print(f'Error: {oserr}')
+        return f'Error: {oserr}'
     except Exception as err:
-        print(f'Error: {err}')
+        return f'Error: {err}'
     else:
         try:
             file_info = list(map(lambda f: (
@@ -23,7 +23,7 @@ def get_files_info(working_directory, directory="."):
                 os.path.isdir(os.path.join(abs_path, f))
             ), os.listdir(abs_path)))
         except OSError as oserr:
-            print(f'Error: {oserr}')
+            return f'Error: {oserr}'
         else:
             file_info_strings = list(map(
                 lambda info: f'- {info[0]}: file_size={info[1]}, is_dir={info[2]}', file_info))

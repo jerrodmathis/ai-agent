@@ -10,9 +10,9 @@ def write_file(working_directory, file_path, content):
             raise Exception(f'Cannot write to "{
                             file_path}" as it is outside the permitted working directory')
     except OSError as oserr:
-        print(f'Error: {oserr}')
+        return f'Error: {oserr}'
     except Exception as err:
-        print(f'Error: {err}')
+        return f'Error: {err}'
     else:
         try:
             if not os.path.exists(os.path.dirname(abs_path)):
@@ -21,4 +21,4 @@ def write_file(working_directory, file_path, content):
                 f.write(content)
                 return f'Successfully wrote to "{file_path}" ({len(content)} characters written)'
         except OSError as oserr:
-            print(f'Error: {oserr}')
+            return f'Error: {oserr}'

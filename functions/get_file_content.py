@@ -15,14 +15,14 @@ def get_file_content(working_directory, file_path):
             raise Exception(
                 f'File not found or is not a regular file: "{file_path}"')
     except OSError as oserr:
-        print(f'Error: {oserr}')
+        return f'Error: {oserr}'
     except Exception as err:
-        print(f'Error: {err}')
+        return f'Error: {err}'
     else:
         try:
             f = open(abs_path, 'r')
         except OSError as oserr:
-            print(f'Error: {oserr}')
+            return f'Error: {oserr}'
         else:
             content = f.read(MAX_CHARS)
             if len(content) == MAX_CHARS:
