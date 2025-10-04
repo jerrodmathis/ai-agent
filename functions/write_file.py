@@ -1,4 +1,5 @@
 import os
+from google.genai import types
 
 
 def write_file(working_directory, file_path, content):
@@ -22,3 +23,23 @@ def write_file(working_directory, file_path, content):
                 return f'Successfully wrote to "{file_path}" ({len(content)} characters written)'
         except OSError as oserr:
             return f'Error: {oserr}'
+
+
+schema_write_file = types.FunctionDeclaration(
+    name="write_file",
+    description="Writes the contents to the specified file path, constrained to the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="The path of the file to write the contents to, relative to the working directory. If not provided, do not make the tool call.",
+            ),
+            "content": types.Schema(
+                type=types.Type.STRING,
+                description="The contents to write to the specified file. If not provided, do not write to the file.",
+            ),
+
+        },
+    ),
+)
